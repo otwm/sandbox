@@ -1,5 +1,4 @@
-import {createServer} from 'http'
-import {parse} from 'url'
+import * as express from 'express'
 import * as next from 'next'
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -9,20 +8,27 @@ const handle = app.getRequestHandler()
 
 app.prepare()
     .then(() => {
-        createServer((req, res) => {
-            const parsedUrl = parse(req.url, true)
-            const {pathname, query} = parsedUrl
-            console.log('ok')
-            if (pathname === '/a') {
-                app.render(req, res, '/a', query)
-            } else if (pathname === '/b') {
-                app.render(req, res, '/b', query)
-            } else {
-                handle(req, res, parsedUrl)
-            }
+        const server = express();
+
+        server.get('/a', (req, res) => {
+            return app.render(req, res, '/b', req.query)
         })
-            .listen(port, (err) => {
-                if (err) throw err
-                console.log(`> Ready on http://localhost:${port}`)
-            })
+
+        server.get('/b', (req, res) => {
+            return app.render(req, res, '/a', req.query)
+        })
+
+        server.get('/posts/:id', (req, res) => {
+            return app.render(req, res, '/posts', {id: req.params.id})
+        })
+
+        server.get('*', (req, res) => {
+            return handle(req, res)
+        })
+
+        server.listen(port, (err) => {
+            if (err) throw err
+            console.log(`> Ready on http://localhost:${port}`)
+        })
+
     })
