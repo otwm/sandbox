@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 
 export default () => <div>
   <Head>
@@ -7,4 +8,7 @@ export default () => <div>
   </Head>
   <p>Welcom!</p>
   <img src="/static/kdo.jpg" alt="my image" style={{width: 100}}/>
+  <Link href="/about">
+      <a>About</a>
+  </Link>
 </div>
