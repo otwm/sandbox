@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon src/server/index.ts",
+    "dev": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon src/server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node .next/production-server/index.js"
+    "start": "cross-env NODE_ENV=production DEBUG='app:log,app:error,-not_this' node .next/production-server/server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "typescript-babel-jest": "^1.0.5"
   },
   "devDependencies": {
+    "@types/debug": "0.0.30",
     "@types/jest": "^23.3.1",
     "@types/next": "^6.1.1",
     "@types/react": "^16.4.7",

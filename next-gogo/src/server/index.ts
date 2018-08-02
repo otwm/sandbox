@@ -1,5 +1,10 @@
 import * as express from 'express'
 import * as next from 'next'
+import log from '../core/log'
+
+process.on('uncaughtException', error => {
+    log('uncaughtException', error.message, error.stack);
+});
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -28,7 +33,7 @@ app.prepare()
 
         server.listen(port, (err) => {
             if (err) throw err
-            console.log(`> Ready on http://localhost:${port}`)
+            log(`> Ready on http://localhost:${port}`);
         })
 
     })
