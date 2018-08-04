@@ -7,7 +7,8 @@
     "test": "jest",
     "dev": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon src/server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production DEBUG='app:log,app:error,-not_this' node .next/production-server/server/index.js"
+    "start": "cross-env NODE_ENV=production DEBUG='app:log,app:error,-not_this' node .next/production-server/server/index.js",
+    "lint": "tslint --project ."
   },
   "keywords": [],
   "author": "",
@@ -32,10 +33,16 @@
     "cross-env": "^5.2.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "fork-ts-checker-webpack-plugin": "^0.4.4",
     "jest": "^23.4.2",
     "nodemon": "^1.18.3",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.4.1",
-    "ts-node": "^7.0.0"
+    "ts-node": "^7.0.0",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.9.2",
+    "tslint-config-prettier": "^1.14.0",
+    "tslint-plugin-prettier": "^1.3.0",
+    "tslint-react": "^3.6.0"
   }
 }
