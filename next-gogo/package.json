@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "dev": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon src/server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production DEBUG='app:log,app:error,-not_this' node .next/production-server/server/index.js",
@@ -19,6 +19,7 @@
     "babel-loader": "^7.1.5",
     "express": "^4.16.3",
     "next": "^6.0.3",
+    "ramda": "^0.25.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "typescript": "^3.0.1",

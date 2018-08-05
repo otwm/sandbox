@@ -11,12 +11,15 @@ export default () => <div>
     <img src="/static/kdo.jpg" alt="my image" style={{width: 100}}/>
 
     <div className='example'>
+        <Link href="/articles">
+            <a>게시판</a>
+        </Link>{' '}
         <Link href="/about">
             <a>About</a>
-        </Link>
+        </Link>{' '}
         <Link href="/a">
             <a>a</a>
-        </Link>
+        </Link>{' '}
         <Link href="/b">
             <a>b</a>
         </Link>
