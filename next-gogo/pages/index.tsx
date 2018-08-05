@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import './index.scss';
 
 export default () => <div>
     <Head>
@@ -9,7 +10,7 @@ export default () => <div>
     <p>Welcom!</p>
     <img src="/static/kdo.jpg" alt="my image" style={{width: 100}}/>
 
-    <div>
+    <div className='example'>
         <Link href="/about">
             <a>About</a>
         </Link>
