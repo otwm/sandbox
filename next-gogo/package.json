@@ -7,9 +7,7 @@
     "test": "jest --watch",
     "dev": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon src/server/index.ts",
     "clean": "gulp clean ",
-    "prebuild": "npm run clean && gulp prebuild",
-    "build": "next build && tsc --project tsconfig.server.json",
-    "postbuild": "gulp postbuild",
+    "build": "gulp",
     "start": "cross-env NODE_ENV=production DEBUG='app:log,app:error,-not_this' node .next/production-server/server/index.js",
     "lint": "tslint --project .",
     "g": "gulp"
@@ -46,7 +44,6 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "fork-ts-checker-webpack-plugin": "^0.4.4",
     "gulp": "^3.9.1",
-    "gulp-shell": "^0.6.5",
     "gulp-zip": "^4.2.0",
     "jest": "^23.4.2",
     "mkdirp": "^0.5.1",
