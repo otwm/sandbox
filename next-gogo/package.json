@@ -26,7 +26,8 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "typescript": "^3.0.1",
-    "typescript-babel-jest": "^1.0.5"
+    "typescript-babel-jest": "^1.0.5",
+    "cross-env": "^5.2.0"
   },
   "devDependencies": {
     "@types/debug": "0.0.30",
@@ -38,7 +39,6 @@
     "@types/shelljs": "^0.8.0",
     "@zeit/next-sass": "^0.2.0",
     "babel-jest": "^23.4.2",
-    "cross-env": "^5.2.0",
     "del": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -52,6 +52,8 @@
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.4.1",
     "rimraf": "^2.6.2",
+    "run-sequence": "^2.2.1",
+    "shelljs": "^0.8.2",
     "ts-node": "^7.0.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.9.2",
