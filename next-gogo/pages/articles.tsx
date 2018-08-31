@@ -1,4 +1,5 @@
 import {Component} from 'react';
+import {observer} from 'mobx-react';
 
 //import ArticleList from '../components/article/ArticleList';
 
@@ -33,6 +34,7 @@ const getArticles = () => ([
     }
 ]);
 
+@observer
 class Articles extends Component<IArticlesProps> {
     static async getInitialProps(): Promise<IArticlesProps> {
         const result = {
