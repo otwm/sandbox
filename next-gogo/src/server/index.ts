@@ -20,15 +20,19 @@ app.prepare()
         });
 
         server.get('/a', (req, res) => {
-            return app.render(req, res, '/b', req.query);
+            return app.render(req, res, '/a', req.query);
         });
 
         server.get('/b', (req, res) => {
-            return app.render(req, res, '/a', req.query);
+            return app.render(req, res, '/b', req.query);
         });
 
         server.get('/posts/:id', (req, res) => {
             return app.render(req, res, '/posts', {id: req.params.id});
+        });
+
+        server.get('/articles', (req, res) => {
+            return app.render(req, res, '/articles', req.query);
         });
 
         server.get('*', (req, res) => {
