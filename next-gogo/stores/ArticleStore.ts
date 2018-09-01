@@ -40,11 +40,10 @@ class ArticleStore {
     }
 
     addAll(articles){
-        console.log(articles)
         this.articles = this.articles.concat(articles.map(item => ({ synchronized : false, data:item })));
     }
 
-    plush(){
+    flush(){
         this.transportLayer.batchUpdate(
             this.articles.filter(article => !article.synchronized)
                 .map(article => article.data)
