@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Link from 'next/link';
+import { Link } from '../src/routes';
 import './index.scss';
 
 export default () => <div>

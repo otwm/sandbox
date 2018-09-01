@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import {observer, Provider} from 'mobx-react';
-import ArticleStore, { Article } from '../stores/ArticleStore';
+import ArticleStore, { Article } from '../../stores/ArticleStore';
 
 //import ArticleList from '../components/article/ArticleList';
 
@@ -31,7 +31,7 @@ const getArticlesData = () => ([
 articleStore.addAll(getArticlesData().map(item => new Article(item)));
 
 @observer
-class Articles extends Component<IArticlesProps> {
+class ArticleList extends Component<IArticlesProps> {
     static async getInitialProps(): Promise<IArticlesProps> {
         const result = { articleStore };
         return result;
@@ -52,7 +52,7 @@ class Articles extends Component<IArticlesProps> {
                         </tr>
                         </thead>
                         <tbody>
-                        {articleStore.articles.map(article => {
+                        {articleStore.articles.map((article) => {
                             return (
                                 <tr key={article.data.id}>
                                     <td>{article.data.id}</td>
@@ -70,4 +70,4 @@ class Articles extends Component<IArticlesProps> {
     }
 }
 
-export default Articles;
+export default ArticleList;

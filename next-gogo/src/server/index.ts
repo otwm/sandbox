@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as next from 'next';
 import log from '../core/log';
+import routes from '../routes';
 
 process.on('uncaughtException', error => {
     log('uncaughtException', error.message, error.stack);
@@ -9,31 +10,11 @@ process.on('uncaughtException', error => {
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
-const handle = app.getRequestHandler();
+const handle = routes.getRequestHandler(app);
 
 app.prepare()
     .then(() => {
         const server = express();
-
-        server.get('/', (req, res) => {
-            return app.render(req, res, '/', req.query);
-        });
-
-        server.get('/a', (req, res) => {
-            return app.render(req, res, '/a', req.query);
-        });
-
-        server.get('/b', (req, res) => {
-            return app.render(req, res, '/b', req.query);
-        });
-
-        server.get('/posts/:id', (req, res) => {
-            return app.render(req, res, '/posts', {id: req.params.id});
-        });
-
-        server.get('/articles', (req, res) => {
-            return app.render(req, res, '/articles', req.query);
-        });
 
         server.get('*', (req, res) => {
             return handle(req, res);
