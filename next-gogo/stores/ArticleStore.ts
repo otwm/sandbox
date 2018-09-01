@@ -1,4 +1,4 @@
-import {observable} from 'mobx';
+import {observable, action} from 'mobx';
 
 const getId = () => {
     const { random, floor } = Math;
@@ -47,19 +47,23 @@ class ArticleStore {
         console.log(articles);
     }
 
+    @action
     search(query){
         console.log(query);
     }
 
+    @action
     add(article){
         this.articles.push(article);
         return article;
     }
 
+    @action
     addAll(articles){
         this.articles = this.articles.concat(articles.map(item => ({ synchronized : SyncState.Created, data:item })));
     }
 
+    @action
     flush(){
         this.transportLayer.batchUpdate(
             this.articles.filter(article => !article.synchronized)
@@ -68,6 +72,7 @@ class ArticleStore {
         this.deleteArticles.push(this.transportLayer.removeAll(this.deleteArticles));
     }
 
+    @action
     removeArticle(id){
         const index = this.articles.findIndex(article => article.data.id === id);
         const deletedArticle = this.articles.splice(index, 1)[0];
@@ -93,10 +98,12 @@ export class Article {
         this.regDate = regDate;
     }
 
+    @action
     update(article){
         console.log(article);
     }
 
+    @action
     remove(){
 
     }
