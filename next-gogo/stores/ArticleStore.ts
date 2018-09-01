@@ -1,13 +1,30 @@
 import {observable} from 'mobx';
 
+const getId = () => {
+    const { random, floor } = Math;
+    return floor(random() * 1000);
+};
+
 const defTransportLayer = {
     onReceiveArticleUpdate(values){
         console.log(values);
     }
 };
 
+export class ArticleQueryStore {
+    @observable title: string;
+    @observable content: string;
+    @observable writer: string;
+}
+
+enum SyncState {
+    Created,
+    Synched,
+    UnSynched,
+}
+
 interface IRecord{
-    synchronized: boolean;
+    synchronized: SyncState;
     data: any;
 }
 
@@ -22,7 +39,7 @@ class ArticleStore {
         this.transportLayer.onReceiveArticleUpdate(articles => this.updateArticleFromServer(articles));
 
         if ( query != null ) {
-            this.loadArticle(query);
+            this.search(query);
         }
     }
 
@@ -30,7 +47,7 @@ class ArticleStore {
         console.log(articles);
     }
 
-    loadArticle(query){
+    search(query){
         console.log(query);
     }
 
@@ -40,7 +57,7 @@ class ArticleStore {
     }
 
     addAll(articles){
-        this.articles = this.articles.concat(articles.map(item => ({ synchronized : false, data:item })));
+        this.articles = this.articles.concat(articles.map(item => ({ synchronized : SyncState.Created, data:item })));
     }
 
     flush(){
@@ -54,7 +71,7 @@ class ArticleStore {
     removeArticle(id){
         const index = this.articles.findIndex(article => article.data.id === id);
         const deletedArticle = this.articles.splice(index, 1)[0];
-        deletedArticle.synchronized = false;
+        deletedArticle.synchronized = SyncState.UnSynched;
         this.deleteArticles.push(deletedArticle);
     }
 }
@@ -69,6 +86,7 @@ export class Article {
     @observable modDate: Date;
 
     constructor({title, content, writer, regDate}) {
+        this.id = getId();
         this.title = title;
         this.content = content;
         this.writer = writer;

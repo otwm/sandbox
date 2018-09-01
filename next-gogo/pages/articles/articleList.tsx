@@ -1,14 +1,15 @@
 import {Component} from 'react';
 import {observer, Provider} from 'mobx-react';
-import ArticleStore, { Article } from '../../stores/ArticleStore';
-
-//import ArticleList from '../components/article/ArticleList';
+import DevTools from 'mobx-react-devtools';
+import ArticleStore, { Article, ArticleQueryStore } from '../../stores/ArticleStore';
 
 interface IArticlesProps {
     articleStore: ArticleStore;
+    articleQueryStore: ArticleQueryStore,
 }
 
 const articleStore = new ArticleStore({});
+const articleQueryStore = new ArticleQueryStore();
 
 const getArticlesData = () => ([
     {
@@ -33,15 +34,21 @@ articleStore.addAll(getArticlesData().map(item => new Article(item)));
 @observer
 class ArticleList extends Component<IArticlesProps> {
     static async getInitialProps(): Promise<IArticlesProps> {
-        const result = { articleStore };
+        const result = { articleStore , articleQueryStore};
         return result;
     }
 
     render() {
-        const { articleStore } = this.props;
+        const { articleStore,  } = this.props;
         return (
             <Provider articleStore={articleStore} >
                 <div>
+                    <div>
+                        제목: <input type="text" value={articleQueryStore.title}/>
+                        내용: <input type="text" value={articleQueryStore.content}/>
+                        글쓴이: <input type="text" value={articleQueryStore.writer}/>
+                        <button onClick={()=>articleStore.search({})} >검색</button>
+                    </div>
                     <table>
                         <thead>
                         <tr>
@@ -64,6 +71,7 @@ class ArticleList extends Component<IArticlesProps> {
                         })}
                         </tbody>
                     </table>
+                    <DevTools />
                 </div>
             </Provider>
         );

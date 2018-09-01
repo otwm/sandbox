@@ -14,14 +14,5 @@ export default () => <div>
         <Link href="/articles">
             <a>게시판</a>
         </Link>{' '}
-        <Link href="/about">
-            <a>About</a>
-        </Link>{' '}
-        <Link href="/a">
-            <a>a</a>
-        </Link>{' '}
-        <Link href="/b">
-            <a>b</a>
-        </Link>
     </div>
 </div>
