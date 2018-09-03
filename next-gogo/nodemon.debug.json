@@ -1,5 +1,10 @@
 {
   "watch": ["src/server/**/*.ts"],
+  "verbose": true,
+  "debug": false,
+  "execMap": {
+    "ts": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' node --inspect -r ts-node/register"
+  },
   "ignore": [
     "node_modules",
     "__test__",
@@ -10,7 +15,6 @@
   "events": {
     "restart": "echo \"restart!!! \""
   },
-  "execMap": {
-    "ts": "ts-node --compilerOptions '{\"module\":\"commonjs\"}'"
-  }
+  "ext": "ts",
+  "inspect": true
 }

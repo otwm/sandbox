@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "dev": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon src/server/index.ts",
+    "dev": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon ./src/server/index.ts",
+    "dev:debug": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon --config nodemon.debug.json ./src/server/index.ts",
     "clean": "gulp clean ",
     "build": "gulp",
     "start": "cross-env NODE_ENV=production DEBUG='app:log,app:error,-not_this' node .next/production-server/server/index.js",
