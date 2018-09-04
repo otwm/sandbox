@@ -1,25 +1,23 @@
-import App, {Container} from 'next/app';
+import App, { AppComponentProps , Container} from 'next/app';
 import React from 'react';
+import withMobx from "../src/core/withMobx";
+import {Provider} from "mobx-react";
 
-class ExtendsApp extends App {
-    static async getInitialProps ({ Component, ctx }) {
-        let pageProps = {};
+interface ExtendsAppProps extends AppComponentProps {
+    stores: any;
+}
 
-        if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx)
-        }
-
-        return {pageProps};
-    }
-
+class ExtendsApp extends App<ExtendsAppProps> {
     render () {
-        const {Component, pageProps} = this.props;
+        const {Component, pageProps, stores } = this.props;
         return (
             <Container>
-                <Component {...pageProps} />
+                <Provider { ...stores}>
+                    <Component {...pageProps} />
+                </Provider>
             </Container>
         );
     }
 }
 
-export default ExtendsApp;
+export default withMobx(ExtendsApp);

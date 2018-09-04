@@ -12,6 +12,7 @@ const defTransportLayer = {
 };
 
 export class ArticleQueryStore {
+    storeName = 'ArticleQueryStore';
     @observable title: string;
     @observable content: string;
     @observable writer: string;
@@ -23,12 +24,13 @@ enum SyncState {
     UnSynched,
 }
 
-interface IRecord{
+interface IRecord {
     synchronized: SyncState;
     data: any;
 }
 
 class ArticleStore {
+    storeName = 'ArticleStore';
     transportLayer;
     count = 0;
     @observable articles:Array<IRecord> = [];

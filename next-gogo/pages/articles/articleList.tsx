@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {observer, Provider} from 'mobx-react';
+import {inject, observer, Provider} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import autobind from 'autobind-decorator';
 import ArticleStore, { Article, ArticleQueryStore } from '../../stores/ArticleStore';
@@ -34,6 +34,7 @@ const getArticlesData = () => ([
 articleStore.addAll(getArticlesData().map(item => new Article(item)));
 
 @observer
+@inject('articleStore', 'articleQueryStore')
 class ArticleList extends Component<IArticlesProps> {
     constructor(props: IArticlesProps){
         super(props);
@@ -46,9 +47,8 @@ class ArticleList extends Component<IArticlesProps> {
 
     @autobind
     search() {
-        console.log('==============================');
-        // const { articleStore, articleQueryStore: query } = this.props;
-        // articleStore.search(query);
+        const { articleStore, articleQueryStore: query } = this.props;
+        articleStore.search(query);
     }
 
     render() {
