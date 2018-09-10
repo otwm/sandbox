@@ -1,4 +1,5 @@
-import {observable, action} from 'mobx';
+import {observable, action, toJS} from 'mobx';
+import { path, map, toPairs, pipe } from 'ramda';
 
 const getId = () => {
     const { random, floor } = Math;
@@ -16,6 +17,9 @@ export class ArticleQueryStore {
     @observable title: string;
     @observable content: string;
     @observable writer: string;
+
+    initialize(data) {
+    }
 }
 
 enum SyncState {
@@ -36,13 +40,31 @@ class ArticleStore {
     @observable articles:Array<IRecord> = [];
     deleteArticles: Array<IRecord> = [];
 
-    constructor({ query = null, transportLayer = defTransportLayer}) {
+    constructor(initValue) {
+        const query = path('query', initValue);
+        const transportLayer = path('transportLayer', initValue) || defTransportLayer;
         this.transportLayer = transportLayer;
         this.transportLayer.onReceiveArticleUpdate(articles => this.updateArticleFromServer(articles));
 
         if ( query != null ) {
             this.search(query);
         }
+    }
+
+    initialize(data) {
+        const that = this;
+        const bbb = toJS(data)
+        debugger
+        Object.entries(toJS(data)).map(item => ({ key: item[0], value: item[1] })).forEach(item => {
+            console.log('item: ');
+            console.log(item);
+            if( that.hasOwnProperty(item.key) ) {
+                that[item.key] = item.value;
+            }
+        })
+        console.log('============');
+        console.log(that);
+        debugger
     }
 
     updateArticleFromServer(articles){

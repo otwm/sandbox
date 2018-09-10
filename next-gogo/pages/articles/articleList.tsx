@@ -2,6 +2,7 @@ import {Component} from 'react';
 import {inject, observer, Provider} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import autobind from 'autobind-decorator';
+import { path } from 'ramda';
 import ArticleStore, { Article, ArticleQueryStore } from '../../stores/ArticleStore';
 import {Link} from "../../src/routes";
 
@@ -52,7 +53,8 @@ class ArticleList extends Component<IArticlesProps> {
     }
 
     render() {
-        const { articleStore, articleQueryStore } = this.props;
+        const { articleStore, articleQueryStore = { title: 0, content: '', writer: ''} } = this.props;
+        const articles = path('articles', articleStore) ||[{data:{}}];
         return (
             <Provider articleStore={articleStore} >
                 <div>
@@ -80,9 +82,9 @@ class ArticleList extends Component<IArticlesProps> {
                         </tr>
                         </thead>
                         <tbody>
-                        {articleStore.articles.map((article) => {
+                        {articles.map((article, index) => {
                             return (
-                                <tr key={article.data.id}>
+                                <tr key={index}>
                                     <td><input type="checkbox" /></td>
                                     <td>{article.data.id}</td>
                                     <td><Link route={`/articles/${article.data.id}`}><a>{article.data.title}</a></Link></td>

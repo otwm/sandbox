@@ -12,7 +12,7 @@ class ExtendsApp extends App<ExtendsAppProps> {
         const {Component, pageProps, stores } = this.props;
         return (
             <Container>
-                <Provider { ...stores}>
+                <Provider { ...stores } >
                     <Component {...pageProps} />
                 </Provider>
             </Container>
