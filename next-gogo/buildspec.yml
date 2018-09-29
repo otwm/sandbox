@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+    - cd next-gogo
+    - echo start install
+    - npm i
+  build:
+    commands:
+    - echo Build started on `date`
+    - npm run build
+    - echo end build
+artifacts:
+  files:
+  - next-gogo/build/*.zip
+  name: next-gogo-$(date +%Y-%m-%d)

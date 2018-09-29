@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import Articles from '../articles';
+// import Articles from '../articles';
 
 const articles = [
     {
@@ -28,9 +28,9 @@ const articles = [
     },
 ];
 
-describe('aricles test', () => {
-    it('aricles count', () => {
-        const articlesPage = shallow(<Articles articles={articles}/>);
-        expect(articlesPage.find('table tbody tr').length).toEqual(3);
-    });
-});
+// describe('aricles test', () => {
+//     it('aricles count', () => {
+//         const articlesPage = shallow(<Articles articles={articles}/>);
+//         expect(articlesPage.find('table tbody tr').length).toEqual(3);
+//     });
+// });

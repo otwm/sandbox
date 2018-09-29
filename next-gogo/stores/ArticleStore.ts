@@ -1,5 +1,5 @@
 import {observable, action, toJS} from 'mobx';
-import { path, map, toPairs, pipe } from 'ramda';
+import { path } from 'ramda';
 
 const getId = () => {
     const { random, floor } = Math;
@@ -19,6 +19,7 @@ export class ArticleQueryStore {
     @observable writer: string;
 
     initialize(data) {
+        console.log(data);
     }
 }
 
@@ -53,8 +54,6 @@ class ArticleStore {
 
     initialize(data) {
         const that = this;
-        const bbb = toJS(data)
-        debugger
         Object.entries(toJS(data)).map(item => ({ key: item[0], value: item[1] })).forEach(item => {
             console.log('item: ');
             console.log(item);
@@ -62,9 +61,6 @@ class ArticleStore {
                 that[item.key] = item.value;
             }
         })
-        console.log('============');
-        console.log(that);
-        debugger
     }
 
     updateArticleFromServer(articles){
