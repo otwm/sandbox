@@ -1,0 +1,17 @@
+{
+  "name": "build-gogo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"build ok!!!\"",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "otwm <otwmoo@gmail.com> (https://github.com/otwm)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

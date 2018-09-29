@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+    - cd build-gogo
+    - echo start install
+    - npm i
+  build:
+    commands:
+    - echo Build started on `date`
+    - npm run build
+    - echo end build
+artifacts:
+  files:
+  - build-gogo/server.js
+  name: build-gogo-$(date +%Y-%m-%d)
