@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "dev": "nodemon server/index.ts",
+    "dev": "cross-env DEBUG='app:log,app:error,app:info,-not_this' DEBUG_SHOW_HIDDEN=disabled nodemon server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
     "buildzip": "gulp",
-    "start": "NODE_ENV=production node .next/production-server/server/index.js",
+    "start": "cross-env NODE_ENV=production DEBUG='app:log,app:error,-not_this' node .next/production-server/server/index.js",
     "lint": "tslint --project .",
     "fix": "tslint --fix --project ."
   },
@@ -17,11 +17,13 @@
     "react-dom": "^16.4.0",
     "typescript": "latest",
     "typescript-babel-jest": "^1.0.5",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "antd": "^3.9.3"
   },
   "devDependencies": {
     "@types/next": "^2.4.11",
     "@types/react": "^16.0.36",
+    "cross-env": "^5.2.0",
     "gulp": "^3.9.1",
     "gulp-zip": "^4.2.0",
     "nodemon": "^1.17.5",
@@ -32,6 +34,7 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-plugin-prettier": "^2.0.0",
-    "tslint-react": "^3.6.0"
+    "tslint-react": "^3.6.0",
+    "typestyle": "^2.0.1"
   }
 }
