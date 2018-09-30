@@ -3,7 +3,7 @@
     "dev": "nodemon server/index.ts",
     "build": "next build && tsc --project tsconfig.server.json",
     "buildzip": "gulp",
-    "start": "NODE_ENV=production node .next/production-server/index.js",
+    "start": "NODE_ENV=production node .next/production-server/server/index.js",
     "lint": "tslint --project .",
     "fix": "tslint --fix --project ."
   },
@@ -12,10 +12,12 @@
     "@zeit/next-typescript": "1.1.0",
     "babel-loader": "^7.1.4",
     "next": "latest",
+    "next-routes": "^1.4.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "typescript": "latest",
-    "typescript-babel-jest": "^1.0.5"
+    "typescript-babel-jest": "^1.0.5",
+    "express": "^4.16.3"
   },
   "devDependencies": {
     "@types/next": "^2.4.11",
