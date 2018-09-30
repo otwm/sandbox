@@ -19,6 +19,7 @@
     "typescript": "latest",
     "typescript-babel-jest": "^1.0.5",
     "express": "^4.16.3",
+    "typestyle": "^2.0.1",
     "antd": "^3.9.3"
   },
   "devDependencies": {
@@ -34,7 +35,6 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-plugin-prettier": "^2.0.0",
-    "tslint-react": "^3.6.0",
-    "typestyle": "^2.0.1"
+    "tslint-react": "^3.6.0"
   }
 }
